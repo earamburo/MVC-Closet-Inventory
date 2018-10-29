@@ -5,6 +5,10 @@
  */
 package CSC4380;
 
+import java.awt.event.ActionListener;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Arilok
@@ -16,8 +20,100 @@ public class myView extends javax.swing.JFrame {
      */
     public myView() {
         initComponents();
+        startUpMessage();
+    }
+    
+    
+    private void startUpMessage(){
+         String message = "Do you already have a closet ID?";
+        int startAnswer = JOptionPane.showConfirmDialog(null, message, "My virtual Closet", JOptionPane.YES_NO_OPTION);
+
+        if(startAnswer == 0){
+            closetIDvalidation();
+        }else{
+            newCloset();
+        }
+    }
+    private void closetIDvalidation(){
+        String message = "What is your Closet ID?";
+        String closetID = JOptionPane.showInputDialog(message);
+
+      //checkClosetID(closetID);
+    }
+    private void newCloset(){
+        String message = "What is your first and last name?";
+        String startAnswer = JOptionPane.showInputDialog(message);
+        String[] names = startAnswer.split(" ", 2);
+        String firstName = names[0];
+        String lastName = names[1];
+        
+        //createID(firstName, lastName);
+   }
+    
+    public String getTypeInput(){
+        return typeTxtField.getText();
+    }
+    public void setTypeOutput(String newOutput){
+        typeTxtField.setText(" ");
+    }
+    
+    public String getColorInput(){
+        return colorTxtField.getText();
+    }
+    public void setColorOutput(String newOutput){
+        colorTxtField.setText(" ");
+    }
+    
+    public String getBrandInput(){
+        return brandTxtField.getText();
+    }
+    public void setBrandOutput(String newOutput){
+        brandTxtField.setText(" ");
     }
 
+    public String getSizeInput(){
+        return sizeTxtField.getText();
+    }
+    public void setSizeOutput(String newOutput){
+        sizeTxtField.setText(" ");
+    }
+    
+public void setDisplay(String Type,String Color,String Brand,String Size){
+        typeTxtField.setText(Type);
+        colorTxtField.setText(Color);
+        brandTxtField.setText(Brand);
+        sizeTxtField.setText(Size);
+        
+         
+         
+    }
+    
+    public void typeBtnListener(ActionListener listener){
+    this.typeBtn.addActionListener(listener);             
+    }
+    public void colorBtnListener(ActionListener listener){
+    this.colorBtn.addActionListener(listener);             
+    }
+    public void brandBtnListener(ActionListener listener){
+    this.brandBtn.addActionListener(listener);             
+    }
+    public void sizeBtnListener(ActionListener listener){
+    this.sizeBtn.addActionListener(listener);             
+    }
+    public void editBtnListener(ActionListener listener){
+    this.editBtn.addActionListener(listener);             
+    }
+    public void newBtnListener(ActionListener listener){
+    this.newBtn.addActionListener(listener);             
+    }
+    public void removeBtnListener(ActionListener listener){
+    this.removeBtn.addActionListener(listener);             
+    }
+    public void showBtnListener(ActionListener listener){
+    this.showBtn.addActionListener(listener);             
+    }
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -27,57 +123,233 @@ public class myView extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        typeBtn = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        colorTxtField = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        brandTxtField = new javax.swing.JTextField();
+        colorBtn = new javax.swing.JButton();
+        brandBtn = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        typeTxtField = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        showBtn = new javax.swing.JButton();
+        newBtn = new javax.swing.JButton();
+        removeBtn = new javax.swing.JButton();
+        editBtn = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        sizeBtn = new javax.swing.JButton();
+        sizeTxtField = new javax.swing.JTextField();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jLabel1.setFont(new java.awt.Font("Lucida Fax", 1, 36)); // NOI18N
+        jLabel1.setText("Welcome To Your Virual Closet");
+
+        jLabel2.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
+        jLabel2.setText("Which type of clothing will you be looking at today?");
+
+        typeBtn.setText("Find this type");
+        typeBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                typeBtnActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
+        jLabel3.setText("What color will it be?");
+
+        colorTxtField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                colorTxtFieldActionPerformed(evt);
+            }
+        });
+
+        jLabel4.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
+        jLabel4.setText("Would you like to look through a specific brand?");
+
+        colorBtn.setText("Find this color");
+
+        brandBtn.setText("Find this Brand");
+
+        jLabel5.setText("(ex. shirts, pants, jackets, shoes, hats, or accessories)");
+
+        jLabel6.setText("(ex. red, orange, yellow, green, blue, purple, black, white, or gray)");
+
+        jLabel7.setText("(ex. Nike, Adidas, Vans, Gucci, Dior, Calvin Klein, )");
+
+        showBtn.setText("Show the entire closet");
+
+        newBtn.setText("Add new Item");
+
+        removeBtn.setText("Remove Item");
+
+        editBtn.setText("Edit this item");
+
+        jLabel8.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
+        jLabel8.setText("Is there a size that goes with this?");
+
+        jLabel9.setText("(ex. XS, S, M, L, XL, 00-18, )");
+
+        sizeBtn.setText("Find this Size");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addComponent(jLabel7)
+                            .addGap(200, 200, 200))
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(brandTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addContainerGap())
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(removeBtn)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(colorTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(colorBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jLabel6)))
+                            .addGap(101, 101, 101)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(brandBtn)
+                        .addGap(174, 174, 174))))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(122, 122, 122)
+                        .addComponent(typeTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, 0)
+                        .addComponent(typeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(16, 16, 16)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(59, 59, 59)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel8)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(editBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(34, 34, 34)
+                                        .addComponent(newBtn))))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(122, 122, 122)
+                        .addComponent(jLabel5))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(122, 122, 122)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel9)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(sizeTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(sizeBtn)))))
+                .addContainerGap(24, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(220, 220, 220)
+                .addComponent(showBtn)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(typeBtn)
+                    .addComponent(typeTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel6)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(colorTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(colorBtn))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel7)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(brandTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(brandBtn))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel8)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel9)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(sizeTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(sizeBtn))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(editBtn)
+                    .addComponent(newBtn)
+                    .addComponent(removeBtn))
+                .addGap(18, 18, 18)
+                .addComponent(showBtn)
+                .addContainerGap(37, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(myView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(myView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(myView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(myView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+    private void colorTxtFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_colorTxtFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_colorTxtFieldActionPerformed
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new myView().setVisible(true);
-            }
-        });
-    }
+    private void typeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_typeBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_typeBtnActionPerformed
+
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton brandBtn;
+    private javax.swing.JTextField brandTxtField;
+    private javax.swing.JButton colorBtn;
+    private javax.swing.JTextField colorTxtField;
+    private javax.swing.JButton editBtn;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JButton newBtn;
+    private javax.swing.JButton removeBtn;
+    private javax.swing.JButton showBtn;
+    private javax.swing.JButton sizeBtn;
+    private javax.swing.JTextField sizeTxtField;
+    private javax.swing.JButton typeBtn;
+    private javax.swing.JTextField typeTxtField;
     // End of variables declaration//GEN-END:variables
+
+    void addnewBtnListener(ActionListener actionListener) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
