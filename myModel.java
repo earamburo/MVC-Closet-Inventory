@@ -1,6 +1,5 @@
 package CSC4380;
 
-import CSC4380.myView;
 import java.awt.event.ActionListener;
 import java.beans.*;
 import java.io.Serializable;
@@ -25,18 +24,9 @@ public class myModel implements Serializable{
     public myModel(){
         propertySupport = new PropertyChangeSupport(this); 
     }
-    public String getDisplay(String Type, String Color, String Brand, String Size){
+    public String getDisplay(){
         if (values=="") values="0";
-        return Type + " "+ Color + " " + Brand+" " + Size;
-    }
-    
-  
-    
-    //This will set the display after a number is pressed
-    public void setDisplay(int n){
-    
-  //Serch query for set values
-    
+        return values;
     }
     
     public String getSampleBrand(){
@@ -75,9 +65,6 @@ public class myModel implements Serializable{
         propertySupport.firePropertyChange(PROP_SAMPLE_SIZE, oldValue, sampleSize);
         
     }
-    
-    
-    
     public void addPropertyChangeListener(PropertyChangeListener listener){
         propertySupport.addPropertyChangeListener(listener);
     }
