@@ -5,6 +5,8 @@
  */
 package CSC4380;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -21,6 +23,14 @@ public class myView extends javax.swing.JFrame {
     public myView() {
         initComponents();
         startUpMessage();
+        centerScreen();
+    }
+    
+    private void centerScreen(){
+        Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
+        int x = (int) ((screen.getWidth() - getWidth()) /2);
+        int y = (int) ((screen.getHeight() - getHeight()) /2);
+        setLocation(x, y);
     }
     
     
@@ -50,43 +60,6 @@ public class myView extends javax.swing.JFrame {
         //createID(firstName, lastName);
    }
     
-    public String getTypeInput(){
-        return typeTxtField.getText();
-    }
-    public void setTypeOutput(String newOutput){
-        typeTxtField.setText(" ");
-    }
-    
-    public String getColorInput(){
-        return colorTxtField.getText();
-    }
-    public void setColorOutput(String newOutput){
-        colorTxtField.setText(" ");
-    }
-    
-    public String getBrandInput(){
-        return brandTxtField.getText();
-    }
-    public void setBrandOutput(String newOutput){
-        brandTxtField.setText(" ");
-    }
-
-    public String getSizeInput(){
-        return sizeTxtField.getText();
-    }
-    public void setSizeOutput(String newOutput){
-        sizeTxtField.setText(" ");
-    }
-    
-public void setDisplay(String Type,String Color,String Brand,String Size){
-        typeTxtField.setText(Type);
-        colorTxtField.setText(Color);
-        brandTxtField.setText(Brand);
-        sizeTxtField.setText(Size);
-        
-         
-         
-    }
     
     public void typeBtnListener(ActionListener listener){
     this.typeBtn.addActionListener(listener);             
@@ -144,6 +117,7 @@ public void setDisplay(String Type,String Color,String Brand,String Size){
         jLabel9 = new javax.swing.JLabel();
         sizeBtn = new javax.swing.JButton();
         sizeTxtField = new javax.swing.JTextField();
+        outputPane = new javax.swing.JScrollPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -180,7 +154,7 @@ public void setDisplay(String Type,String Color,String Brand,String Size){
 
         jLabel6.setText("(ex. red, orange, yellow, green, blue, purple, black, white, or gray)");
 
-        jLabel7.setText("(ex. Nike, Adidas, Vans, Gucci, Dior, Calvin Klein, )");
+        jLabel7.setText("(ex. Nike, Adidas, Vans, Gucci, Dior, Calvin Klein)");
 
         showBtn.setText("Show the entire closet");
 
@@ -193,16 +167,22 @@ public void setDisplay(String Type,String Color,String Brand,String Size){
         jLabel8.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jLabel8.setText("Is there a size that goes with this?");
 
-        jLabel9.setText("(ex. XS, S, M, L, XL, 00-18, )");
+        jLabel9.setText("(ex. XS, S, M, L, XL, 00-18)");
 
         sizeBtn.setText("Find this Size");
+
+        outputPane.addMouseWheelListener(new java.awt.event.MouseWheelListener() {
+            public void mouseWheelMoved(java.awt.event.MouseWheelEvent evt) {
+                outputPaneMouseWheelMoved(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(122, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -224,6 +204,10 @@ public void setDisplay(String Type,String Color,String Brand,String Size){
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(brandBtn)
                         .addGap(174, 174, 174))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(220, 220, 220)
+                .addComponent(showBtn)
+                .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -257,11 +241,8 @@ public void setDisplay(String Type,String Color,String Brand,String Size){
                                 .addComponent(sizeTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(sizeBtn)))))
-                .addContainerGap(24, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(220, 220, 220)
-                .addComponent(showBtn)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(outputPane)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -309,7 +290,8 @@ public void setDisplay(String Type,String Color,String Brand,String Size){
                     .addComponent(removeBtn))
                 .addGap(18, 18, 18)
                 .addComponent(showBtn)
-                .addContainerGap(37, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
+                .addComponent(outputPane, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
@@ -322,6 +304,10 @@ public void setDisplay(String Type,String Color,String Brand,String Size){
     private void typeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_typeBtnActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_typeBtnActionPerformed
+
+    private void outputPaneMouseWheelMoved(java.awt.event.MouseWheelEvent evt) {//GEN-FIRST:event_outputPaneMouseWheelMoved
+        // TODO add your handling code here:
+    }//GEN-LAST:event_outputPaneMouseWheelMoved
 
     
 
@@ -341,6 +327,7 @@ public void setDisplay(String Type,String Color,String Brand,String Size){
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JButton newBtn;
+    private javax.swing.JScrollPane outputPane;
     private javax.swing.JButton removeBtn;
     private javax.swing.JButton showBtn;
     private javax.swing.JButton sizeBtn;
@@ -348,8 +335,4 @@ public void setDisplay(String Type,String Color,String Brand,String Size){
     private javax.swing.JButton typeBtn;
     private javax.swing.JTextField typeTxtField;
     // End of variables declaration//GEN-END:variables
-
-    void addnewBtnListener(ActionListener actionListener) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 }
